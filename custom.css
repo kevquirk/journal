@@ -1,0 +1,104 @@
+@font-face {
+    font-family: 'iawriter-mono';
+    src: url('/iawriter-mono/Regular.woff2') format('woff2'),
+         url('/iawriter-mono/Regular.woff') format('woff');
+         font-weight: normal;
+         font-display: swap;
+         font-style: normal;
+}
+
+@font-face {
+    font-family: 'iawriter-mono';
+    src: url('/iawriter-mono/Bold.woff2') format('woff2'),
+         url('/iawriter-mono/Bold.woff') format('woff');
+         font-weight: bold;
+         font-display: swap;
+         font-style: normal;
+}
+
+@font-face {
+    font-family: 'iawriter-mono';
+    src: url('/iawriter-mono/BoldItalic.woff2') format('woff2'),
+         url('/iawriter-mono/BoldItalic.woff') format('woff');
+         font-weight: bold;
+         font-display: swap;
+         font-style: italic;
+}
+
+@font-face {
+    font-family: 'iawriter-mono';
+    src: url('/iawriter-mono/Italic.woff2') format('woff2'),
+         url('/iawriter-mono/Italic.woff') format('woff');
+         font-weight: normal;
+         font-display: swap;
+         font-style: italic;
+}
+
+body > header {
+    padding: 0;
+}
+  
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    resize: none; /* Disable manual resizing */
+}
+
+ul.entry-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.entry-list li {
+    margin-bottom: 0.5rem;
+}
+
+.hidden {
+    display: none;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+button.delete {
+    background-color: #C70039;
+    border-color:  #C70039;
+}
+
+button.delete:hover {
+    background-color:  #900C3F;
+    border-color:   #900C3F;
+}
+
+@media (prefers-color-scheme: dark) {
+    button.delete {
+        background-color: red;
+        border-color:  red;
+    }
+
+    button.delete:hover {
+        background-color:  crimson;
+        border-color:   crimson;
+    }
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.entry {
+    font-family: "iawriter-mono", monospace !important;
+    padding: 0 1.5rem;
+    background: var(--accent-bg);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    margin: 2rem 0;
+    font-family: var(--mono-font);
+}
+
+span.disabled {
+    opacity: 0.3;
+}
