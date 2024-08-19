@@ -90,7 +90,6 @@ button.delete:hover {
 }
 
 .entry {
-    font-family: "iawriter-mono", monospace !important;
     padding: 0 1.5rem;
     background: var(--accent-bg);
     border: 2px solid var(--border);
