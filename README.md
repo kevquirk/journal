@@ -13,7 +13,7 @@ If you want to update the title and description that are shown on the header of 
 ```
 <?php
 return [
-    'title' => "Kev's Journal", // Edit this linke to change the title
+    'title' => "Kev's Journal", // Edit this line to change the title
     'description' => "This is my personal journal where I document my thoughts and experiences." // Edit this line to change the description
 ];
 ```
