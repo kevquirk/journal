@@ -33,29 +33,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
 ?>
 
 <!doctype html>
-<html lang="en-GB">
+<html lang="de">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
 
     <title>Entry</title>
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="simple.css">
     <link rel="stylesheet" href="custom.css">
     <script>
         function confirmDelete() {
-            return confirm('Are you sure you want to delete this entry?');
+            return confirm('Bist du dir sicher, dass du diesen Eintrag löschen möchtest?');
         }
     </script>
 </head>
 <body>
     <main>
         <div class="button-group">
-            <a class="button" href="/">Back to Journal</a>
+            <a class="button" href="/tagebuch">Zurück zum Tagebuch</a>
 
             <?php if ($file && file_exists('entries/' . $file)): ?>
                 <form method="POST" action="" onsubmit="return confirmDelete();">
-                    <button class="delete" type="submit" name="delete">Delete Entry</button>
+                    <button class="delete" type="submit" name="delete">Eintrag löschen</button>
                 </form>
             <?php endif; ?>
         </div>
@@ -64,23 +64,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
             <?php if ($entry_content): ?>
                 <div><?php echo $entry_content; ?></div>
             <?php else: ?>
-                <p>Entry not found.</p>
+                <p>Eintrag nicht gefunden.</p>
             <?php endif; ?>
         </div>
 
         <div class="button-group">
             <!-- Previous Entry -->
             <?php if ($prevFile): ?>
-                <a href="?file=<?php echo urlencode($prevFile); ?>">← Previous Entry</a>
+                <a href="?file=<?php echo urlencode($prevFile); ?>">← Vorheriger Eintrag</a>
             <?php else: ?>
-                <span class="disabled">← Previous Entry</span>
+                <span class="disabled">← Vorheriger Eintrag</span>
             <?php endif; ?>
 
             <!-- Next Entry -->
             <?php if ($nextFile): ?>
-                <a href="?file=<?php echo urlencode($nextFile); ?>">Next Entry →</a>
+                <a href="?file=<?php echo urlencode($nextFile); ?>">Nächster Eintrag →</a>
             <?php else: ?>
-                <span class="disabled">Next Entry →</span>
+                <span class="disabled">Nächster Eintrag →</span>
             <?php endif; ?>
         </div>
 
