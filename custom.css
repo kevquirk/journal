@@ -1,39 +1,3 @@
-@font-face {
-    font-family: 'iawriter-mono';
-    src: url('/iawriter-mono/Regular.woff2') format('woff2'),
-         url('/iawriter-mono/Regular.woff') format('woff');
-         font-weight: normal;
-         font-display: swap;
-         font-style: normal;
-}
-
-@font-face {
-    font-family: 'iawriter-mono';
-    src: url('/iawriter-mono/Bold.woff2') format('woff2'),
-         url('/iawriter-mono/Bold.woff') format('woff');
-         font-weight: bold;
-         font-display: swap;
-         font-style: normal;
-}
-
-@font-face {
-    font-family: 'iawriter-mono';
-    src: url('/iawriter-mono/BoldItalic.woff2') format('woff2'),
-         url('/iawriter-mono/BoldItalic.woff') format('woff');
-         font-weight: bold;
-         font-display: swap;
-         font-style: italic;
-}
-
-@font-face {
-    font-family: 'iawriter-mono';
-    src: url('/iawriter-mono/Italic.woff2') format('woff2'),
-         url('/iawriter-mono/Italic.woff') format('woff');
-         font-weight: normal;
-         font-display: swap;
-         font-style: italic;
-}
-
 body > header {
     padding: 0;
 }
