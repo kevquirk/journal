@@ -11,8 +11,8 @@ require 'functions.php';
 
     <title><?php echo htmlspecialchars($page_title); ?></title>
     <meta name="description" content="<?php echo htmlspecialchars($page_description); ?>">
-    <link rel="apple-touch-icon" href="/images/favicon.webp">
-    <link rel="icon" type="image/png" href="/images/favicon.webp" />
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
 
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
     <link rel="stylesheet" href="custom.css">
