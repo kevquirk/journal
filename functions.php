@@ -10,7 +10,7 @@ require 'Parsedown.php';
 function handleJournalEntry() {
     global $success_message, $page_title, $default_title;
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['content'])) {
-        $content = htmlspecialchars($_POST['content']);
+        $content = $_POST['content']; // No htmlspecialchars here
         $date = date('Y-m-d-His'); // Include seconds
         $timestamp = date('Y-m-d H:i:s'); // Display seconds in timestamp
         $content_with_metadata = "$timestamp\n\n$content";

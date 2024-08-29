@@ -38,7 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
     <title>Entry</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
     <link rel="stylesheet" href="custom.css">
