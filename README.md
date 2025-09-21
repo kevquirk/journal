@@ -40,6 +40,28 @@ The hosting requirements are *extremely* simple. All that is needed is PHP suppo
 
 Even though *Journal* requires SQLite, no configuration is needed. If no existing database is detected, then a new one will be automatically created when you publish your first entry.
 
+## Securing your data
+
+If you are using a publicly accessible web server, you must ensure the `data` folder is secured.  This will prevent someone browsing to the folder, or downloading the database.
+
+For those running an Apache2 web server, your data folder is already secured with the`.htaccess` file in the data folder.
+
+If you are using Nginx you will need an entry in the server section of your config file, something like:
+
+```
+location ^~ /data/ {
+        deny all;
+        return 403;
+    }
+```
+Then restart NGINX
+
+Caddy has a number of ways to do this -- consult your documentation.
+
+To test your security, add `/data/journal.db` to the end of your web address in the browser location bar.  You should be Denied access and it will NOT download the file.
+
+
+
 ## Setting up the config file
 
 There are 4 simple options to complete in the config file:
