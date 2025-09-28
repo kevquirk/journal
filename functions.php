@@ -182,6 +182,32 @@ function getEntriesByTag($tag, $limit = 10, $offset = 0) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getEntryByDate($entry_date) {
+    global $db;
+
+    $stmt = $db->prepare("SELECT e.id, e.content, e.mood, GROUP_CONCAT(t.name) AS tags 
+                          FROM entries e 
+                          LEFT JOIN entry_tags et ON e.id = et.entry_id 
+                          LEFT JOIN tags t ON et.tag_id = t.id 
+                          WHERE timestamp LIKE :entry_date");
+
+    $stmt->bindValue(':entry_date', "{$entry_date}%", PDO::PARAM_STR);
+    $stmt->execute(); 
+    $ret = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($ret) {
+        $data = ['id'       => $ret['id'],
+                 'content'  => $ret['content'],
+                 'mood'     => $ret['mood'],
+                'tags'      => explode(',', $ret['tags'])
+        ];
+    }
+    else
+    {   $data = ['id' => '0']; }
+
+    return $data;
+}
+
 // Tagcloud on homepage
 function getTagCloud() {
     global $db;
@@ -196,8 +222,12 @@ function getTagCloud() {
 
 // Format timestamp to local timezone
 function formatTimestampForLocal(string $timestamp): string {
-    $config = require __DIR__ . '/config.php';
+    global $config;
     $dt = new DateTime($timestamp, new DateTimeZone('UTC'));
     $dt->setTimezone(new DateTimeZone($config['timezone']));
-    return $dt->format('d F Y \a\t H:i');
+    if ($config['date_only']):
+        return $dt->format('d F Y');
+    else:
+        return $dt->format('d F Y \a\t H:i');
+    endif;
 }

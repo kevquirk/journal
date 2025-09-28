@@ -1,8 +1,11 @@
 <?php
 $config = require __DIR__ . '/config.php';
+$config['date_only'] = $config['date_only'] ?? False;
 
 require_once __DIR__ . '/functions.php';
 require_once __DIR__ . '/Parsedown.php';
+
+
 
 // Prevent session hijacking
 ini_set('session.cookie_httponly', 1);

@@ -116,6 +116,10 @@ span.disabled {
   align-items: end;
 }
 
+.date-only {
+  grid-template-columns: 1fr;
+}
+
 .inline-date-time label {
   display: block;
   margin-bottom: 0.25rem;

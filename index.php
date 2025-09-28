@@ -11,10 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_entry'])) {
     $tags     = !empty($_POST['tags']) ? array_map('trim', explode(',', $_POST['tags'])) : [];
 
     // Build timestamp from date+time inputs (convert from local tz -> UTC)
-    $config  = require __DIR__ . '/config.php';
+    global $config;
     $tzLocal = new DateTimeZone($config['timezone']);
     $date    = $_POST['entry_date'] ?: date('Y-m-d');
-    $time    = $_POST['entry_time'] ?: date('H:i');
+    $time    = $_POST['entry_time'] ?? date('H:i');
 
     $dt = DateTime::createFromFormat('Y-m-d H:i', "$date $time", $tzLocal);
     if (!$dt) { $dt = new DateTime('now', $tzLocal); }
@@ -24,6 +24,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_entry'])) {
     if ($content === '') {
         $success_message = '<p>Content cannot be empty.</p>';
     } else {
+        // If this is date_only setup, get existing entry for the date if it exists
+        // and added the new data to it
+        if ($config['date_only'] == True && $id ==0) {
+            $data = getEntryByDate($date);
+            if ($data['id'] != '0')  {
+                $prev_mood = ($data['mood']!='' ? '**Mood:** '. $data['mood']. "\n\n ---" : '');
+                $content = $data['content'] . "\n\n" . $prev_mood . "\n" . $content;
+                $tags = array_filter(array_merge($data['tags'], $tags));
+            }
+            $id = $data['id'];
+        }
+
         if ($id > 0) {
             updateEntry($id, $content, $mood, $tags, $timestampUtc);
             header('Location: index.php?notice=' . urlencode('Entry updated.'));
@@ -72,15 +84,17 @@ $totalPages   = ceil($totalEntries / $limit);
             <!-- hidden id, blank for new entries, filled when editing -->
             <input type="hidden" name="id" id="entry-id" value="">
 
-            <div class="inline-date-time">
+            <div class="inline-date-time <?php if ($config['date_only']) { echo 'date-only';}?>">
                 <div>
                     <label for="entry_date">Date</label>
                     <input type="date" id="entry_date" name="entry_date" value="<?= date('Y-m-d') ?>">
                 </div>
+                <?php if (!$config['date_only']): ?>
                 <div>
                     <label for="entry_time">Time</label>
                     <input type="time" id="entry_time" name="entry_time" value="<?= date('H:i') ?>">
                 </div>
+                <?php endif ?>
             </div>
 
             <label class="hidden" for="content">Journal Entry</label>
