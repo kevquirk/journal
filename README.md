@@ -35,7 +35,7 @@ The hosting requirements are *extremely* simple. All that is needed is PHP suppo
 
 1. Fork or download the project.
 2. Upload the project to your hosting provider.
-3. Complete the settings in config.php.
+3. Rename `example-config.php` to `config.php` and fill in the details.
 4. Enjoy!
 
 Even though *Journal* requires SQLite, no configuration is needed. If no existing database is detected, then a new one will be automatically created when you publish your first entry.
@@ -59,8 +59,6 @@ Then restart NGINX
 Caddy has a number of ways to do this -- consult your documentation.
 
 To test your security, add `/data/journal.db` to the end of your web address in the browser location bar.  You should be Denied access and it will NOT download the file.
-
-
 
 ## Setting up the config file
 
