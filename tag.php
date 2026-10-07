@@ -1,7 +1,7 @@
 <?php
 require 'bootstrap.php';
 
-$tag = strtolower($_GET['tag']) ?? '';
+$tag = strtolower($_GET['tag'] ?? '');
 
 if (!$tag) {
     die('Tag not specified.');
